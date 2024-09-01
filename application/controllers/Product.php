@@ -8,7 +8,6 @@ class Product extends CI_Controller
     {
         parent::__construct();
         $this->load->model(['product_model', 'category_model']);
-        $this->ud = has_loggedIn();
         $this->load->library('session');
     }
 
@@ -25,6 +24,7 @@ class Product extends CI_Controller
 
     public function index()
     {
+        $this->ud = has_loggedIn();
 
         // Product Status operation Active/Deactive
         if (isset($_GET['type']) && $_GET['type'] != '') {
@@ -72,6 +72,7 @@ class Product extends CI_Controller
     // Product Add & Updated
     public function save($id = null)
     {
+        $this->ud = has_loggedIn();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->form_validation->set_rules('category_id', 'Categorys', 'trim|required');
             $this->form_validation->set_rules('name', 'Product Name', 'trim|required');

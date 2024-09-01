@@ -1,3 +1,6 @@
+<?php if(!$data){
+    redirect('users');
+    }?>
 <!-- Start Bradcaump area -->
 <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(<?= base_url('assets2/images/bg/naji.jpg') ?>) no-repeat scroll center center / cover ;">
     <div class="ht__bradcaump__wrap">
@@ -35,31 +38,36 @@
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($data as $key => $v) {
+                                $product_id = '';
+                                if ($data > 0) {
+                                    foreach ($data as $key => $v) {
                                 ?>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="<?= base_url("users/product_details/{$v->product_id}") ?>"><img src="<?= PRODUCT_IMAGE_SITE_PATH . $v->image ?>" alt="product img" /></a></td>
+                                        <tr>
+                                            <td class="product-thumbnail"><a href="<?= base_url("users/product_details/{$v->product_id}") ?>"><img src="<?= PRODUCT_IMAGE_SITE_PATH . $v->image ?>" alt="product img" /></a></td>
 
-                                        <td class="product-name"><a href="<?= base_url("users/product_details/{$v->product_id}") ?>"><?= $v->name ?></a>
-                                            <ul class="pro__prize">
-                                                <li class="old__prize"><?= $v->mrp ?></li>
-                                                <li><?= $v->price ?></li>
-                                            </ul>
-                                        </td>
+                                            <td class="product-name"><a href="<?= base_url("users/product_details/{$v->product_id}") ?>"><?= $v->name ?></a>
+                                                <ul class="pro__prize">
+                                                    <li class="old__prize"><?= $v->mrp ?></li>
+                                                    <li><?= $v->price ?></li>
+                                                </ul>
+                                            </td>
 
-                                        <td class="product-price"><span class="amount"><?= $v->price ?></span></td>
-
-
-
-                                        <td class="product-remove">
-                                            <a href="javascript:void(0)" onclick="wishlist(<?= $v->id ?>,'remove')">
-                                                <i class="icon-trash icons"></i>
-                                            </a>
-                                        </td>
+                                            <td class="product-price"><span class="amount"><?= $v->price ?></span></td>
 
 
-                                    </tr>
-                                <?php  }
+
+                                            <td class="product-remove">
+                                                <a href="javascript:void(0)" onclick="wishlist(<?= $v->id ?>,'remove')">
+                                                    <i class="icon-trash icons"></i>
+                                                </a>
+                                            </td>
+
+
+                                        </tr>
+                                <?php
+                                        $product_id = $v->product_id;
+                                    }
+                                }
 
                                 ?>
                             </tbody>
@@ -71,12 +79,11 @@
                                 <div class="buttons-cart">
                                     <a href="<?= base_url('users') ?>">Continue Shopping</a>
                                 </div>
-                                
+
 
                                 <div class="fr__list__btn">
-                                    <a class="fr__btn" href="javascript:void(0)" onclick="manage_cart(<?= $v->product_id ?>,'add');">Add To Cart</a>
+                                    <a class="fr__btn" href="javascript:void(0)" onclick="manage_cart(<?= $product_id ?>,'add');">Add To Cart</a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -109,24 +116,22 @@
         return false;
     }
 
-     //  Product cart Manage
-     function manage_cart(pid, type) {
-             let qty = 1;
-             $.ajax({
-                 type: "POST",
-                 url: `<?= base_url('manage_cart') ?>`,
-                 dataType: "JSON",
-                 data: {
-                     pid: pid,
-                     qty: qty,
-                     type: type
-                 },
-                 success: function(data) {
-                     $('.htc__qua').html(data)
-                 }
-             });
-             return false;
-         }
+    //  Product cart Manage
+    function manage_cart(pid, type) {
+        let qty = 1;
+        $.ajax({
+            type: "POST",
+            url: `<?= base_url('manage_cart') ?>`,
+            dataType: "JSON",
+            data: {
+                pid: pid,
+                qty: qty,
+                type: type
+            },
+            success: function(data) {
+                $('.htc__qua').html(data)
+            }
+        });
+        return false;
+    }
 </script>
-
- 

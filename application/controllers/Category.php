@@ -94,5 +94,4 @@ class Category extends CI_Controller
             $this->view($id);
         }
     }
-
 }
