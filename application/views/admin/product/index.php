@@ -25,6 +25,7 @@
                         <th class="text-center">Mrp</th>
                         <th class="text-center">Price</th>
                         <th class="text-center">Qty</th>
+                        <th class="text-center">Best Seller</th>
                         <th class="text-center">Image</th>
                         <th class="text-center">Active</th>
                     </tr>
@@ -42,6 +43,7 @@
                                 <td><?= $v->mrp ?></td>
                                 <td><?= $v->price ?></td>
                                 <td><?= $v->qty ?></td>
+                                <td><?php if($v->best_seller==1){echo "Yes";}else{echo"No";} ?></td>
                                 <td><img style="width: 50px; height:50px;" src="<?php if ($v->image == "") {
                                                     echo base_url('uploads/download.png');
                                                 } else {

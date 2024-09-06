@@ -80,6 +80,7 @@ class Product extends CI_Controller
             $this->form_validation->set_rules('mrp', 'MRP', 'trim|required');
             $this->form_validation->set_rules('price', 'Price', 'trim|required');
             $this->form_validation->set_rules('qty', 'Qty', 'trim|required');
+            $this->form_validation->set_rules('best_seller', 'Best Seller', 'trim|required');
             $this->form_validation->set_rules('short_desc', 'Short Desc', 'trim|required');
             $this->form_validation->set_rules('description', 'Description', 'trim|required');
             $this->form_validation->set_rules('meta_title', 'Meta Title', 'trim|required');
@@ -108,6 +109,7 @@ class Product extends CI_Controller
                     "mrp" => $this->security->xss_clean($this->input->post('mrp')),
                     "price" => $this->security->xss_clean($this->input->post('price')),
                     "qty" => $this->security->xss_clean($this->input->post('qty')),
+                    "best_seller" => $this->security->xss_clean($this->input->post('best_seller')),
                     "image" => $image,
                     "short_desc" => $this->security->xss_clean($this->input->post('short_desc')),
                     "description" => $this->security->xss_clean($this->input->post('description')),
@@ -143,6 +145,7 @@ class Product extends CI_Controller
                         "mrp" => $this->security->xss_clean($this->input->post('mrp')),
                         "price" => $this->security->xss_clean($this->input->post('price')),
                         "qty" => $this->security->xss_clean($this->input->post('qty')),
+                        "best_seller" => $this->security->xss_clean($this->input->post('best_seller')),
                         "short_desc" => $this->security->xss_clean($this->input->post('short_desc')),
                         "description" => $this->security->xss_clean($this->input->post('description')),
                         "meta_title" => $this->security->xss_clean($this->input->post('meta_title')),

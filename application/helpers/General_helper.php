@@ -62,8 +62,6 @@ define('PRODUCT_IMAGE_SERVER_PATH', SERVER_PATH . 'uploads/product/');
 define('PRODUCT_IMAGE_SITE_PATH', SITE_PATH . '/uploads/product/');
 
 
-
-
 if (!function_exists('pp')) {
   /**
    * pp - data show for development purposesss
@@ -143,7 +141,6 @@ if (!function_exists('pp')) {
     }
   }
 
-
   // users login
   if (!function_exists('has_loggedIn_users')) {
     /**
@@ -170,17 +167,21 @@ if (!function_exists('pp')) {
     }
   }
 
-
   if (!function_exists('get_product')) {
 
-    function get_product($limit = null, $pid = null)
+    function get_product($limit = null, $pid = null, $best_seller = null)
     {
       $CI = get_instance();
       $CI->load->model('product_model');
-        if ($limit != "") {
-          $limit = $limit;
-        }
-        $data = $CI->product_model->get_product($limit, $pid);
+      if ($limit != "") {
+        $limit = $limit;
+      }
+
+      $b_seller = '';
+      if ($best_seller != "") {
+        $b_seller = $best_seller;
+      }
+      $data = $CI->product_model->get_product($limit, $pid, $b_seller);
       return $data;
     }
   }
@@ -204,7 +205,6 @@ if (!function_exists('pp')) {
       ]);
     }
   }
-
 
   if (!function_exists('is_active')) {
     function is_active($controller, $method = '')

@@ -60,7 +60,7 @@ class product_model extends CI_Model
         return $this->db->get()->row();
     }
 
-    public function get_product($limit = null, $pid = null)
+    public function get_product($limit = null, $pid = null, $best_seller=null)
     {
         $this->db->select("*");
         $this->db->from($this->table);
@@ -68,6 +68,9 @@ class product_model extends CI_Model
         $this->db->limit($limit);
         if ($pid) {
             $this->db->where("id", $pid);
+        }
+        if($best_seller){
+            $this->db->where("best_seller", $best_seller);
         }
         $this->db->where("status", 1);
         return $this->db->get()->result();

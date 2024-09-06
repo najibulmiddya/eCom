@@ -44,8 +44,6 @@ class Users extends CI_Controller
 
             redirect('users');
         }
-
-
         ecomview('users/product_category/index', compact('data'), $title);
     }
 

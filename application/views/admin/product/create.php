@@ -48,6 +48,15 @@
                 </div>
 
                 <div class="form-group col-4">
+                    <label for="Category" class=" form-control-label">Best Seller</label>
+                    <select class="form-control" name="best_seller">
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                    </select>
+                    <?= form_error('best_seller', '<div class="error text-danger">', '</div>') ?>
+                </div>
+
+                <div class="form-group col-4">
                     <label for="image" class=" form-control-label">Image</label>
                     <input type="file" id="image" name="image" value="" required placeholder="Enter your Image " class="form-control">
                 </div>

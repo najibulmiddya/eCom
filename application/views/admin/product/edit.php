@@ -56,6 +56,22 @@
                 </div>
 
                 <div class="form-group col-4">
+                    <label for="Category" class=" form-control-label">Best Seller</label>
+                    <select class="form-control" name="best_seller">
+                        <?php if($product->best_seller==1){?>
+                            <option value="1" selected>Yes</option>
+                            <option value="0">No</option>
+                       <?php }else{?>
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                      <?php }?>
+                        
+                        
+                    </select>
+                    <?= form_error('best_seller', '<div class="error text-danger">', '</div>') ?>
+                </div>
+
+                <div class="form-group col-4">
                     <label for="image" class=" form-control-label">Image</label>
                     <input type="file" id="image" name="image" placeholder="Enter your Image " class="form-control">
 
