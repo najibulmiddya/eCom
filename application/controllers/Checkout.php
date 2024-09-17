@@ -38,6 +38,10 @@ class Checkout extends CI_Controller
             if ($paymet_type == "COD") {
                 $payment_status = "success";
             }
+            
+            // elseif ($paymet_type == "PAYU") {
+            //     pp($_POST);
+            // }
             $order_status = 1;
 
             $cart_total = 0;
